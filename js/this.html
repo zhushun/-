@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	</head>
+	<body id="reset">
+
+		<script type="text/javascript">
+			/*
+			
+			一、	ES5函数中this的指向是谁调用该函数，this就指向谁（this就是谁）
+
+			二、 ES6的箭头函数中this的指向是定义该函数时this的指向 (不是调用时的this)  
+
+			*/
+
+			var x = 1;
+			var obj3={
+				x:4,
+				fun1:function() {
+					var aa= {
+						a:2,
+						funa:()=>{
+							console.log(this);//this => {x:4 ,fun1, fun2}
+						}
+					}
+					aa.funa();
+					// this.fun2();  //说明箭头函数的this跟调用的位置无关，跟定义的位置有关
+					console.log(this); //this => {x:4 ,fun1, fun2}
+				},
+				fun2:()=>{
+					var bb={
+						b:2,
+						funb:function () {
+							console.log(this);  //this => {b:2,funb}
+						}
+					}
+					bb.funb();
+					console.log(this); //this => window
+				},
+				fun3:()=>{
+					var dd={
+						d:2,
+						fund:()=> {
+							console.log(this);  //this => window
+						}
+					}
+					dd.fund();
+					console.log(this); //this => window
+				},
+				fun4:function(){
+					var ee={
+						e:2,
+						fune:function(){
+							console.log(this);  //this => {e:2,funb}
+						}
+					}
+					ee.fune();
+					console.log(this); //this => {x:4 ,fun1, fun2}
+				}
+
+			}
+			obj3.fun1();
+			obj3.fun2();
+			obj3.fun3();
+			obj3.fun4();
+		</script>
+	</body>
+</html>
