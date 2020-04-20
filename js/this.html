@@ -68,6 +68,14 @@
 			obj3.fun2();
 			obj3.fun3();
 			obj3.fun4();
+
+			function ww() {
+				var j = 10;
+				console.log(j)
+				console.log(this);  //this => window
+			}
+			ww();
+			window.ww();
 		</script>
 	</body>
 </html>
